@@ -49,13 +49,38 @@ namespace DepartamentoPessoal.Controllers
 
         public IActionResult Editar(int id)
         {
-            PessoaModel pessoadb = _pessoaRepositorio.ListarPorid(id);
+            PessoaModel pessoadb = _pessoaRepositorio.ListarPorId(id);
             return View(pessoadb);
         }
 
-        public IActionResult ApagarConfirmacao()
+        public IActionResult ApagarConfirmacao(int id)
         {
-            return View();
+            PessoaModel pessoa = _pessoaRepositorio.ListarPorId(id);
+            return View(pessoa);
+        }
+
+        public IActionResult Apagar(int id)
+        {
+            try
+            {
+                bool apagado = _pessoaRepositorio.Apagar(id);
+
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Departamento Apagado com sucesso";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Ops, não conseguimos apagar o seu departamento";
+                }
+
+                return RedirectToAction("Consultar");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos apagar o seu departamento, mais detalhes do erro:{erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]

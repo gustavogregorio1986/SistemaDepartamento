@@ -24,9 +24,21 @@ namespace DepartamentoPessoal.Repositorio
             return pessoa;
         }
 
+        public bool Apagar(int id)
+        {
+            PessoaModel pessoadb = ListarPorId(id);
+
+            if (pessoadb == null) throw new Exception("Houve erro na deleção da pessoa no departamento");
+
+            _bancoContext.Pessoas.Remove(pessoadb);
+            _bancoContext.SaveChanges();
+
+            return true;
+        }
+
         public PessoaModel Atualizar(PessoaModel pessoa)
         {
-            PessoaModel pessoadb = ListarPorid(pessoa.Id);
+            PessoaModel pessoadb = ListarPorId(pessoa.Id);
 
             if (pessoadb == null) throw new Exception("Houve um erro ao alterar a Pessoa");
 
@@ -44,7 +56,7 @@ namespace DepartamentoPessoal.Repositorio
             return pessoadb;
         }
 
-        public PessoaModel ListarPorid(int id)
+        public PessoaModel ListarPorId(int id)
         {
             return _bancoContext.Pessoas.FirstOrDefault(x => x.Id == id);
         }
