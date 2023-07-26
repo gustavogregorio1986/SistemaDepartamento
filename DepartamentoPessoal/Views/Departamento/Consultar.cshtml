@@ -1,0 +1,70 @@
+﻿@model List<PessoaModel>
+@{
+    ViewData["Title"] = "Consulta do departamento Pessoal";
+}
+
+<div class="text-center">
+    <h2 class="display-4">listagem do Departamento Pessoal</h2>
+</div>
+
+<br/>
+
+  @if(TempData["MensagemSucesso"] != null)
+    {
+         <div class="alert alert-success" role="alert">
+           <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+           @TempData["MensagemSucesso"]
+        </div>   
+    }
+
+    @if(TempData["MensagemErro"] != null)
+    {
+         <div class="alert alert-success" role="alert">
+           <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+           @TempData["MensagemErro"]
+        </div>   
+    }
+
+
+<br/>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Cpf</th>
+      <th scope="col">Rg</th>
+      <th scope="col"> Nascimento</th>
+      <th scope="col">Nome do Pai</th>
+      <th scope="col">Nome da Mãe</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+   @if(Model != null && Model.Any())
+   {
+       foreach(PessoaModel pessoa in Model)
+       {
+            <tr>
+              <th scope="row">@pessoa.Id</th>
+              <td>@pessoa.Nome</td>
+              <td>@pessoa.Email</td>
+              <td>@pessoa.Cpf</td>
+              <td>@pessoa.Rg</td>
+              <td>@pessoa.DataNasc</td>
+              <td>@pessoa.NomePai</td>
+              <td>@pessoa.NomeMae</td>
+              <td>
+                 <a role="button" asp-controller="Departamento" asp-action="Editar" class="btn btn-primary">Editar</a>
+              </td>
+              <td>
+                  <a role="button" asp-controller="Departamento" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>
+              </td>
+             </tr>    
+       }
+   }
+  </tbody>
+</table>
