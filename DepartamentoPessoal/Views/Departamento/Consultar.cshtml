@@ -58,7 +58,7 @@
               <td>@pessoa.NomePai</td>
               <td>@pessoa.NomeMae</td>
               <td>
-                 <a role="button" asp-controller="Departamento" asp-action="Editar" class="btn btn-primary">Editar</a>
+                 <a role="button" asp-controller="Departamento" asp-route-id="@pessoa.Id" asp-action="Editar" class="btn btn-primary">Editar</a>
               </td>
               <td>
                   <a role="button" asp-controller="Departamento" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>

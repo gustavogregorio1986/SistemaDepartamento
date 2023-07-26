@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PessoaModel
+@{
     ViewData["Title"] = "Editar campo do departamento Pessoal";
 }
 
@@ -6,34 +7,41 @@
     <h2 class="display-4">Editar campo do departamento Pessoal</h2>
 </div>
 
-<form>
+<form asp-controller="Departamento" asp-action="Alterar" method="post">
+  <input type="hidden" asp-for="Id"/>
   <div class="form-group">
     <label for="nome">Nome</label>
-    <input type="text" class="form-control"  placeholder="Digite o seu nome">
+    <input type="text" class="form-control" asp-for="Nome" placeholder="Digite o seu nome">
+    @Html.ValidationMessageFor(model => model.Nome, null, new { @class = "validation-error" })
   </div>
   <div class="form-group">
     <label for="e-mail">E-mail</label>
-    <input type="text" class="form-control"  placeholder="Digite o seu email">
+    <input type="text" class="form-control" asp-for="Email" placeholder="Digite o seu email">
+    @Html.ValidationMessageFor(model => model.Email, null, new { @class = "validation-error" })
   </div>
   <div class="form-group">
     <label for="cpf">Cpf</label>
-    <input type="text" class="form-control"  placeholder="Digite o seu cpf">
+    <input type="text" class="form-control" asp-for="Cpf" placeholder="Digite o seu cpf">
   </div>
   <div class="form-group">
     <label for="rg">Rg</label>
-    <input type="text" class="form-control"  placeholder="Digite o seu rg">
+    <input type="text" class="form-control" asp-for="Rg" placeholder="Digite o seu rg">
+    @Html.ValidationMessageFor(model => model.Rg, null, new { @class = "validation-error" })
   </div>
   <div class="form-group">
     <label for="rg">data Nascimento</label>
-    <input type="text" class="form-control"  placeholder="Digite a sua data de nascimento">
+    <input type="text" class="form-control" asp-for="DataNasc"  placeholder="Digite a sua data de nascimento">
+    @Html.ValidationMessageFor(model => model.DataNasc, null, new { @class = "validation-error" })
   </div>
   <div class="form-group">
     <label for="nomePai">Nome do Pai</label>
-    <input type="text" class="form-control"  placeholder="Digite o nome dpo pai">
+    <input type="text" class="form-control" asp-for="NomePai" placeholder="Digite o nome dpo pai">
+    @Html.ValidationMessageFor(model => model.NomePai, null, new { @class = "validation-error" })
   </div>
   <div class="form-group">
     <label for="nomemae">Nome da Mãe</label>
-    <input type="text" class="form-control"  placeholder="Digite o nome da Mãe">
+    <input type="text" class="form-control" asp-for="NomeMae" placeholder="Digite o nome da Mãe">
+    @Html.ValidationMessageFor(model => model.NomeMae, null, new { @class = "validation-error" })
   </div>
   <button type="submit" class="btn btn-primary btn-block">Cadastar Dados</button>
 </form>
